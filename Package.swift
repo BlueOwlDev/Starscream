@@ -34,11 +34,11 @@ let darwinPackage = Package(
 let linuxPackage = Package(
 	name: "Starscream",
 	products: [ .library(name: "Starscream", targets: [ "Starscream" ]) ],
-	targets: [ 
-		.target(name: "Starscream", path: "Sources")
-	]
 	dependencies: [
     .package(url: "https://github.com/apple/swift-nio-zlib-support.git", from: "1.0.0")
+	],
+	targets: [ 
+		.target(name: "Starscream", path: "Sources")
 	]
 )
 
