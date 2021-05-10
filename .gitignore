@@ -1,3 +1,6 @@
+# Where the XCFramework Makefile places archives during build.
+.archives
+
 # CocoaPods
 #
 # We recommend against adding the Pods directory to your .gitignore. However
