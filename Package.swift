@@ -27,7 +27,7 @@ let darwinPackage = Package(
 	platforms: [ .macOS(.v10_10), .iOS(.v12), .tvOS(.v12) ],
 	products: [ .library(name: "Starscream", targets: [ "Starscream" ]) ],
 	targets: [ 
-		.binaryTarget(name: "Starscream", path: "XCFramework/Starscream.xcframework") 
+		.binaryTarget(name: "Starscream", path: "Starscream.xcframework") 
 	]
 )
 
@@ -42,8 +42,4 @@ let linuxPackage = Package(
 	]
 )
 
-#if os(Linux)
-let package = linuxPackage
-#else
 let package = darwinPackage
-#endif
