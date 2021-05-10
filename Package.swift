@@ -26,6 +26,7 @@ let darwinPackage = Package(
 	name: "Starscream",
 	platforms: [ .macOS(.v10_10), .iOS(.v12), .tvOS(.v12) ],
 	products: [ .library(name: "Starscream", targets: [ "Starscream" ]) ],
+	dependencies: [],
 	targets: [ 
 		.binaryTarget(name: "Starscream", path: "Starscream.xcframework") 
 	]
