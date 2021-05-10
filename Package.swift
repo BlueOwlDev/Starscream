@@ -1,4 +1,4 @@
-// swift-tools-version:5.2
+// swift-tools-version:5.3
 
 //
 //  Package.Swift
@@ -22,21 +22,28 @@
 
 import PackageDescription
 
-let package = Package(
+let darwinPackage = Package(
 	name: "Starscream",
 	platforms: [ .macOS(.v10_10), .iOS(.v12), .tvOS(.v12) ],
 	products: [ .library(name: "Starscream", targets: [ "Starscream" ]) ],
 	targets: [ 
-#if os(Linux)
-		.target(name: "Starscream", path: "Sources")
-#else
 		.binaryTarget(name: "Starscream", path: "XCFramework/Starscream.xcframework") 
-#endif
+	]
+)
+
+let linuxPackage = Package(
+	name: "Starscream",
+	products: [ .library(name: "Starscream", targets: [ "Starscream" ]) ],
+	targets: [ 
+		.target(name: "Starscream", path: "Sources")
 	]
 	dependencies: [
+    .package(url: "https://github.com/apple/swift-nio-zlib-support.git", from: "1.0.0")
 	]
 )
 
 #if os(Linux)
-    package.dependencies.append(.package(url: "https://github.com/apple/swift-nio-zlib-support.git", from: "1.0.0"))
+let package = linuxPackage
+#else
+let package = darwinPackage
 #endif
