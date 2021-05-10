@@ -23,15 +23,18 @@
 import PackageDescription
 
 let package = Package(
-        name: "Starscream",
-        products: [
-            .library(name: "Starscream", targets: ["Starscream"])
-        ],
-        dependencies: [],
-        targets: [
-            .target(name: "Starscream",
-                    path: "Sources")
-        ]
+	name: "Starscream",
+	platforms: [ .macOS(.v10_10), .iOS(.v12), .tvOS(.v12) ],
+	products: [ .library(name: "Starscream", targets: [ "Starscream" ]) ],
+	targets: [ 
+#if os(Linux)
+		.target(name: "Starscream", path: "Sources")
+#else
+		.binaryTarget(name: "Starscream", path: "XCFramework/Starscream.xcframework") 
+#endif
+	]
+	dependencies: [
+	]
 )
 
 #if os(Linux)
